@@ -84,7 +84,7 @@
             <div class="text-center">
               <button id="captcha" type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2 g-recaptcha" data-sitekey="@Environment.GetEnvironmentVariable("CAPTCHA_CLIENT_KEY")" data-error-callback="onCaptchaError" data-callback="onSubmit">Register</button>
             </div>
-            <p class="text-sm mt-3 mb-0">@Localizer["Already have an account?"] <a asp-area="Identity" asp-page=" / Account / Login" class="text - dark font - weight - bolder">@Localizer["Sign In"]</a></p>
+            <p class="text-sm mt-3 mb-0">@Localizer["Already have an account?"] <a asp-area="Identity" asp-page="/Account/Login" class="text - dark font - weight - bolder">@Localizer["Sign In"]</a></p>
 </form>
         </div>
       </div>
