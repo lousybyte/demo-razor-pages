@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="ASP.NET Razor Pages Demo.">
+  <meta name="keywords" content="asp.net, razor, pages, demo, web, postgre">
+  <meta name="author" content="Valentin">
+  <link rel="apple-touch-icon" sizes="76x76" href="~/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="~/img/favicon.png">
+  <title>@ViewData["Title"] - Demo Razor Pages</title>
+  <environment include="Development">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-add-nonce />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" asp-add-nonce />
+    <link rel="stylesheet" href="~/css/nucleo-icons.css" asp-add-nonce>
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous" asp-add-nonce></script>
+    <link rel="stylesheet" href="~/css/nucleo-svg.css" asp-add-nonce>
+    <link rel="stylesheet" href="~/css/soft-dashboard.min.css" asp-add-nonce>
+    <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" asp-add-nonce />
+  </environment>
+  <environment exclude="Development">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+          asp-add-nonce />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" asp-add-nonce />
+    <link rel="stylesheet" href="~/css/nucleo-icons.css" asp-add-nonce>
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous" asp-add-nonce></script>
+    <link rel="stylesheet" href="~/css/nucleo-svg.css" asp-add-nonce>
+    <link rel="stylesheet" href="~/css/soft-dashboard.min.css" asp-add-nonce>
+    <link rel="stylesheet" href="~/css/app.min.css" asp-append-version="true" asp-add-nonce />
+  </environment>
+</head>
+<body class="g-sidenav-show bg-white">
+  <div class="container position-sticky z-index-sticky top-0">
+    <div class="row">
+      <div class="col-12">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg blur blur-rounded top-1 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+          <div class="container-fluid">
+            <a class="navbar-brand font-weight-bolder ms-lg-0 ms-3 " asp-area="" asp-page="/Index">
+              Demo Razor Pages
+            </a>
+            <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon mt-2">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </span>
+            </button>
+            <div class="collapse navbar-collapse" id="navigation">
+              <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                  <a class="nav-link d-flex align-items-center me-2 active" aria-current="page" asp-area="" asp-page="/Index">
+                    <i class="fa fa-chart-pie opacity-6 text-dark me-1"></i>
+                    @Localizer["Home"]
+                  </a>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                  <li class="nav-item">
+                    <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Manage/Index">
+                      <i class="fa fa-user opacity-6 text-dark me-1"></i>
+                      @Localizer["Profile"]
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-2" asp-area="" asp-page="/Products">
+                      <i class="fa fa-list opacity-6 text-dark me-1"></i>
+                      @Localizer["Products"]
+                    </a>
+                  </li>
+                }
+                <li class="nav-item">
+                  <a class="nav-link me-2" asp-area="" asp-page="/Privacy">
+                    <i class="fa fa-user-secret opacity-6 text-dark me-1"></i>
+                    @Localizer["Privacy"]
+                  </a>
+                </li>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                  <li class="nav-item">
+                    <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Register">
+                      <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                      @Localizer["Sign Up"]
+                    </a>
+                  </li>
+                }
+              </ul>
+
+              <ul class="navbar-nav">
+                @if (!User.Identity.IsAuthenticated)
+                {
+                  <li class="nav-item">
+                    <a class="btn btn-sm btn-round mb-0 me-1 bg-gradient-dark mt-4 mt-lg-0 " asp-area="Identity" asp-page="/Account/Login">@Localizer["Sign In"]</a>
+</li>
+                }
+                else
+                {
+                  <li class="nav-item">
+                    <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Logout">
+                      <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
+                      @Localizer["Logout"]
+                    </a>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
+      </div>
+    </div>
+  </div>
+  <section class="h-99-vh mb-1">
+    @await RenderSectionAsync("Header", required: false)
+
+    @RenderBody()
+  </section>  <footer class="footer py-5 mt-6">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 mb-4 mx-auto text-center small">
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            @Localizer["Company"]
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            @Localizer["About Us"]
+          </a>
+          <a asp-area="" asp-page="/Privacy" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2">
+            @Localizer["Privacy"]
+          </a>
+        </div>
+        <div class="col-lg-6 mx-auto text-center mb-4 mt-2">
+          <partial name="_SelectLanguagePartial" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 mx-auto text-center">
+          <a asp-page="/Index" class="text-secondary me-xl-5 me-3 mb-sm-0 mb-2 small">
+            Copyright &copy; @DateTime.Now.Year Demo Company
+          </a>
+        </div>
+        <div class="col-lg-6 mx-auto text-center mb-4 mt-2">
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-dribbble"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-twitter"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-instagram"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-pinterest"></span>
+          </a>
+          <a href="javascript:;" target="_blank" class="text-secondary me-xl-4 me-4">
+            <span class="text-lg fab fa-github"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <environment include="Development">
+    <script src="~/lib/jquery/dist/jquery.min.js" asp-add-nonce></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery-ajax-unobtrusive.min.js" asp-add-nonce></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js" asp-add-nonce></script>
+    <script src="~/js/plugins/smooth-scrollbar.min.js" asp-add-nonce></script>
+    <script src="~/js/soft-dashboard.min.js" asp-add-nonce></script>
+    <script src="~/js/app.js" asp-append-version="true" asp-add-nonce></script>
+  </environment>
+
+  <environment exclude="Development">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+            asp-add-nonce>
+    </script>
+    <script src="~/lib/jquery-ajax-unobtrusive/jquery-ajax-unobtrusive.min.js" asp-add-nonce></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+            crossorigin="anonymous"
+            asp-add-nonce>
+    </script>
+    <script src="~/js/plugins/smooth-scrollbar.min.js" asp-add-nonce></script>
+    <script src="~/js/soft-dashboard.min.js" asp-add-nonce></script>
+    <script src="~/js/app.min.js" asp-append-version="true" asp-add-nonce></script>
+  </environment>
+
+  @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

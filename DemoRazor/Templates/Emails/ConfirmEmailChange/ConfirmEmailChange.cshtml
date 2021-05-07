@@ -1,0 +1,18 @@
+﻿@using RazorHtmlEmails.RazorClassLib.Views.Emails.ConfirmAccount
+@using RazorHtmlEmails.RazorClassLib.Views.Shared
+@model ConfirmEmailChangeViewModel
+
+@{
+  ViewData["EmailTitle"] = "Confirm Email Change";
+}
+
+<p>
+  You received this email because you or someone else requested an email address change for your account.<br />
+  Please click the button below for confirmation.
+</p>
+<br />
+@await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Confirm Email Change", Model.ConfirmEmailUrl))
+<br />
+<p>
+  <small>This is an automatic email. Please do not reply to this address.</small>
+</p>

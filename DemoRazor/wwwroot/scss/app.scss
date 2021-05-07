@@ -1,0 +1,195 @@
+﻿@import 'variables';
+
+nav.blur.blur-rounded {
+    border-radius: 16px;
+}
+
+nav.blur {
+    background-color: hsla(0, 0% ,100% ,0.9) !important;
+}
+
+* {
+    &.move-on-hover-left {
+        -webkit-transition: $move-transition;
+        transition: $move-transition;
+        overflow: $move-overflow;
+        -webkit-transform-origin: $move-transform-origin;
+        transform-origin: $move-transform-origin;
+        -webkit-transform: $move-transform;
+        transform: $move-transform;
+        -webkit-backface-visibility: $move-backface-visibility;
+        backface-visibility: $move-backface-visibility;
+        will-change: $move-will-change;
+
+        &:hover {
+            -webkit-transform: $move-hover-transform-left;
+            transform: $move-hover-transform-left;
+        }
+    }
+
+    &.move-on-hover-right {
+        -webkit-transition: $move-transition;
+        transition: $move-transition;
+        overflow: $move-overflow;
+        -webkit-transform-origin: $move-transform-origin;
+        transform-origin: $move-transform-origin;
+        -webkit-transform: $move-transform;
+        transform: $move-transform;
+        -webkit-backface-visibility: $move-backface-visibility;
+        backface-visibility: $move-backface-visibility;
+        will-change: $move-will-change;
+
+        &:hover {
+            -webkit-transform: $move-hover-transform-right;
+            transform: $move-hover-transform-right;
+        }
+    }
+}
+
+
+a {
+
+    &:hover {
+        color: #ff0080 !important;
+    }
+}
+
+.oblique-left {
+    transform: $header-oblique-transform;
+    overflow: $header-oblique-overflow;
+    width: $header-oblique-img-width;
+    left: $header-oblique-img-left;
+    border-bottom-left-radius: $border-radius-lg;
+
+    .oblique-image {
+        transform: $header-oblique-img-transform;
+    }
+}
+
+.oblique-right {
+    transform: $header-oblique-transform;
+    overflow: $header-oblique-overflow;
+    width: $header-oblique-img-width;
+    left: $header-oblique-img-left;
+    border-bottom-left-radius: $border-radius-lg;
+
+    .oblique-image {
+        transform: $header-oblique-img-transform;
+    }
+}
+
+.card.card-background {
+    align-items:normal;
+    .card-body {
+        background-color: #fff;
+    }
+}
+
+a.text-gradient.text-info {
+    &:hover {
+        background-image: linear-gradient( 310deg,#cb0c9f,#ff0080);
+    }
+}
+
+.validation-summary-errors, .field-validation-error {
+    font-size: 0.8rem !important;
+}
+
+.background-dark {
+    background-color: #30365c;
+}
+
+.outline-dark {
+    border: #cecece solid 1px !important;
+}
+
+.icon {
+    i {
+        font-size:1.1rem !important;
+    }
+}
+
+.card {
+    box-shadow: 0 10px 17px 0 rgba(0,0,0,0.15);
+}
+
+.icon-azure {
+    background-image: url(/img/logos/azure.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-efcore {
+    background-image: url(/img/logos/efcore.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-google {
+    background-image: url(/img/logos/google.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-serilog {
+    background-image: url(/img/logos/serilog.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-seq{
+    background-image: url(/img/logos/seq.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-quartz {
+    background-image: url(/img/logos/quartz.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-aspnet {
+    background-image: url(/img/logos/aspnetcore.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-github {
+    background-image: url(/img/logos/github.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}
+
+.icon-sass {
+    background-image: url(/img/logos/sass.png);
+    background-size: cover;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-bottom: -2px;
+}

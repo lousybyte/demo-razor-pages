@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.Extensions.Localization;
+@using Microsoft.Extensions.Options
+
+@inject IStringLocalizer<SharedResources> Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+}
+
+<div title="@Localizer["Request culture provider:"] @requestCulture?.Provider?.GetType().Name">
+    <form id="selectLanguage" asp-page="/Language" asp-route-returnUrl="@Context.Request.Path" method="post" class="form-horizontal small" role="form">
+        @Localizer["Language:"] <select name="culture" asp-for="@requestCulture.RequestCulture.UICulture.Name" asp-items="cultureItems">
+        </select>
+    </form>
+</div>

@@ -1,0 +1,164 @@
+﻿@page
+
+@model IndexModel
+@{
+  ViewData["Title"] = "Home page";
+}
+
+@section Header {
+  <div class="page-header align-items-start section-height-40 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('/img/curved-images/curved6.png'); background-position:top">
+    <span class="mask bg-gradient-dark opacity-1"></span>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 text-center mx-auto">
+          <h1 class="text-white mb-2 mt-5">@Localizer["Welcome!"]</h1>
+          <p class="text-lead text-white">@Localizer["A simple demo project using ASP.NET Core Razor Pages"]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<div class="container">
+  <div class="row mt-lg-n10 mt-md-n11 mt-n10">
+    <main role="main">
+      <div class="col-xl-12 col-lg-12 col-md-12 mx-auto">
+        <div class="card z-index-0 outline-dark">
+          <div class="card-header text-center pt-4">
+            <h2 class="text-dark">@Localizer["Features"]</h2>
+          </div>
+          <div class="card-body">
+            <div class="row mb-4">
+              <div class="col-md-9">
+                <div class="card card-background move-on-hover-left">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="oblique-left position-absolute top-0 h-100 d-md-block  me-n1">
+                          <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0" style="background-image:url('/img/curved-images/curved2.png')"></div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h4 class="text-primary"><i class="fa fa-code text-primary pr-3"></i> ASP.NET Core 5</h4>
+                        <ul class="opacity-9 text-dark">
+                          <li>Globalization and Localization</li>
+                          <li>Custom Logging Provider (<i class="icon-serilog"></i> Serilog)</li>
+                          <li>Structured Logging Aggregator (<i class="icon-seq"></i> Seq)</li>
+                          <li>Background Jobs (<i class="icon-quartz"></i> Quartz)</li>
+                          <li>Custom Middleware</li>
+                          <li>Custom Tag Helpers</li>
+                          <li>Custom Data Annotations</li>
+                          <li>Custom Validation</li>
+                          <li>Custom View Components</li>
+                          <li>Strongly Typed Configurations (POCO)</li>
+                          <li>Custom URL format</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-9">
+                <div class="card card-background move-on-hover-right">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <h4 class="text-dark"><i class="fa fa-database text-dark pr-3"></i> Database</h4>
+                        <ul class="opacity-9 text-dark">
+                          <li><i class="icon-efcore"></i> Entity Framework Core 5</li>
+                          <li><i class="icon-azure"></i> Azure PostgreSQL</li>
+                          <li>Code First Migrations</li>
+                          <li>Concurrency Tokens</li>
+                        </ul>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="oblique position-absolute top-0 h-100 d-md-block  me-n1">
+                          <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0" style="background-image:url('/img/curved-images/curved14.png')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-9">
+                <div class="card card-background move-on-hover-left">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="oblique-left position-absolute top-0 h-100 d-md-block  me-n1">
+                          <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0" style="background-image:url('/img/curved-images/curved1.png')">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-8">
+                        <h4 class="text-warning"><i class="fa fa-lock text-warning pr-3"></i> Security</h4>
+                        <ul class="opacity-9 text-dark">
+                          <li>Authentication via Microsoft Identity Server</li>
+                          <li>External Login Providers (<i class="icon-google"></i>  Google)</li>
+                          <li>Two Factor Authentication (QR)</li>
+                          <li>Email Confirmations</li>
+                          <li>Secure Cookies</li>
+                          <li>HTTP Security Headers <span class="small"><code>(x-xss, referrer-policy, nosniff, x-powered-by, x-frame-options, etc)</code></span></li>
+                          <li>Content Security Policy <span class="small"><code>(self, script-src, style-src, upgrade-insecure-requests, block-all-mixed-content, nonce, etc)</code></span></li>
+                          <li>CRSF</li>
+                          <li>CORS</li>
+                          <li>HSTS</li>
+                          <li>Custom HTTP Headers</li>
+                          <li>Custom Cookies</li>
+                          <li>Request Rate Limiter</li>
+                          <li>Captcha Protection (<i class="icon-google"></i> ReCaptcha Invisible)</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-9">
+                <div class="card card-background move-on-hover-right">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-md-8">
+                        <h4 class="text-success"><i class="fa fa-stream text-success pr-3"></i> Miscellaneous</h4>
+                        <ul class="opacity-9 text-dark">
+                          <li><i class="icon-azure"></i> Azure App Services</li>
+                          <li>HTML Email Templates</li>
+                          <li><i class="icon-sass"></i> SASS/SCSS</li>
+                          <li>Bundler/Minifier (HTML/CSS/JS)</li>
+                          <li>Server Response Compression</li>
+                          <li>Continuos Integration/Delivery (<i class="icon-github"></i> GitHub Actions)</li>
+                          <li>Unit Tests</li>
+                          <li>Integration Tests</li>
+                        </ul>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="oblique position-absolute top-0 h-100 d-md-block  me-n1">
+                          <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0" style="background-image:url('/img/curved-images/curved4.png')"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4 text-center mt-4 content-center">
+              <vc:ip></vc:ip>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

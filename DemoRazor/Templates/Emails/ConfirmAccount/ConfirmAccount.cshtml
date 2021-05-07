@@ -1,0 +1,17 @@
+﻿@using RazorHtmlEmails.RazorClassLib.Views.Emails.ConfirmAccount
+@using RazorHtmlEmails.RazorClassLib.Views.Shared
+@model ConfirmAccountViewModel
+
+@{
+  ViewData["EmailTitle"] = "Welcome!";
+}
+
+<p>
+  We're excited to have you get started. First, you need to confirm your account. Just press the button below.
+</p>
+<br />
+@await Html.PartialAsync("EmailButton", new EmailButtonViewModel("Confirm Account", Model.ConfirmEmailUrl))
+<br />
+<p>
+  <small>This is an automatic email. Please do not reply to this address.</small>
+</p>

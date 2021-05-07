@@ -1,0 +1,44 @@
+﻿@page "/account/resendemailconfirmation/"
+@model ResendEmailConfirmationModel
+@{
+  ViewData["Title"] = "Resend Email Confirmation";
+}
+
+<section>
+  <div class="page-header section-height-75">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-5 col-lg-6 col-md-6 d-flex flex-column mx-auto">
+          <div class="card card-plain mt-8">
+            <div class="card-header pb-0 text-left bg-transparent">
+              <h3 class="font-weight-bolder text-dark text-gradient">Resend Email Confirmation</h3>
+              <p class="mb-0">Enter your email address</p>
+            </div>
+            <div class="card-body mb-0 pb-0">
+              <section>
+                <form method="post">
+                  <div asp-validation-summary="All" class="text-danger"></div>
+                  <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                  </div>
+                  <button id="captcha" type="submit" class="btn btn-dark g-recaptcha" data-sitekey="@Environment.GetEnvironmentVariable("CAPTCHA_CLIENT_KEY")" data-callback='onSubmit'>Resend</button>
+                </form>
+              </section>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="oblique position-absolute top-0 h-100 d-md-block d-none me-n8">
+            <div class="oblique-image bg-cover position-absolute fixed-top ms-auto h-100 z-index-0 ms-n6" style="background-image:url('/img/curved-images/curved14.png')"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,20 @@
+﻿$border-radius: .25rem !default;
+$border-radius-sm: .2rem !default;
+$border-radius-lg: .3rem !default;
+$border-radius-pill: 50rem !default;
+
+$move-transition: .2s ease-out !default;
+$move-overflow: hidden !default;
+$move-transform: perspective(999px) rotateY(0deg) translate3d(0,0,0) !default;
+$move-transform-origin: 50% 0 !default;
+$move-backface-visibility: hidden !default;
+$move-will-change: transform,box-shadow !default;
+$move-hover-transform-left: perspective(999px) rotateY(3deg) translate3d(-5px,0px,0px) !default;
+$move-hover-transform-right: perspective(999px) rotateY(-3deg) translate3d(-5px,0px,0px) !default;
+
+$header-oblique-img-width: 60% !default;
+$header-oblique-img-right: -15rem !default;
+$header-oblique-img-left: -15rem !default;
+$header-oblique-transform: skewX(-10deg) !default;
+$header-oblique-overflow: hidden !default;
+$header-oblique-img-transform: skewX(10deg) !default;

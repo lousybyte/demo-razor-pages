@@ -1,0 +1,8 @@
+﻿<script src="/lib/jquery-validation/dist/jquery.validate.min.js" asp-add-nonce></script>
+<script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-add-nonce></script>
+<script src="https://www.google.com/recaptcha/api.js" asp-add-nonce async defer></script>
+<script asp-add-nonce>
+  function onSubmit(token) {
+    document.getElementById("captcha").form.submit();
+  }
+</script>

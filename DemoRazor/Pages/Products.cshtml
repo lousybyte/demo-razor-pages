@@ -1,0 +1,158 @@
+﻿@page "{handler?}/{id?}"
+@model ProductsModel
+@{
+  ViewData["Title"] = "Products";
+}
+@using Microsoft.AspNetCore.Antiforgery
+@inject IAntiforgery AntiForgery;
+
+@section Header {
+  <div class="page-header align-items-start section-height-40 pt-5 pb-11 m-3 border-radius-lg" style="background-image: url('/img/curved-images/curved6.png');">
+    <span class="mask bg-gradient-dark opacity-1"></span>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 text-center mx-auto">
+          <h1 class="text-white mb-2 mt-5">@Localizer["Products"]</h1>
+          <p class="text-lead text-white">@Localizer["Here you can do some CRUD operations"]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<div class="container">
+  <div class="row mt-lg-n10 mt-md-n11 mt-n10 mb-2">
+    <div class="col-xl-10 col-lg-10 col-md-10 mx-auto">
+      <div class="card z-index-0">
+        <div class="card-header text-center pt-4">
+          <span>@Localizer["Product List"]</span>
+        </div>
+        <div class="card-body pt-0 text-center">
+          <div class="card">
+            <div class="table-responsive">
+              <form method="post" asp-page-handler="Add">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder">@Localizer["Id"]</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder">@Localizer["Name"]</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder">@Localizer["Brand"]</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">@Localizer["Category"]</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder">@Localizer["Price"]</th>
+                      <th class="text-secondary opacity-7"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach (var product in @Model.Products)
+                    {
+                      <tr>
+                        <td class="align-middle text-center text-sm">
+                          <span class="text-xs text-secondary mb-0 font-weight-bold">@product.Id</span>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class=" text-xs text-primary mb-0 font-weight-bold">@product.ProductName</span>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class="text-xs text-secondary mb-0">@product.Brand.BrandName</span>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class="text-xs text-secondary mb-0">@product.Category.CategoryName</span>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <span class="text-xs text-warning mb-0">@product.ListPrice $</span>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                          <!-- <a class="btn btn-sm btn-danger" data-ajax="true" data-ajax-url="/Products?handler=Remove" data-ajax-complete="onDeleteCompleted">Delete</a>-->
+                          <input type="button" class="btn btn-sm btn-danger product-id" value="@Localizer["Delete"]" data-product-id="@product.Id" />
+                        </td>
+                      </tr>
+                    }
+                    <tr>
+                      <td class="align-middle text-center text-sm">
+                        <!-- Id -->
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <div class="form-group">
+                          <input asp-for="Input.ProductName" class="form-control form-control-sm" aria-label="Product Name" placeholder="@Localizer["Product Name"]" />
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <div class="form-group">
+                          <select class="form-control form-control-sm" asp-for="Input.Brand" asp-items="Model.Brands">
+                          </select>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <div class="form-group">
+                          <select class="form-control form-control-sm" asp-for="Input.Category" asp-items="Model.Categories"></select>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <div class="form-group">
+                          <input asp-for="Input.Price" class="form-control form-control-sm" aria-label="Price" placeholder="@Localizer["Price"]" />
+                        </div>
+                      </td>
+                      <td class="text-center text-sm">
+                        <div class="form-group text-center">
+                          <button type="submit" class="btn btn-sm bg-gradient-info w-100 mt-0 mb-0">@Localizer["Add"]</button>
+</div>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <p class="mb-0"><span asp-validation-for="Input.ProductName" class="text-danger"></span></p>
+                <p class="mb-0"><span asp-validation-for="Input.Brand" class="text-danger"></span></p>
+                <p class="mb-0"><span asp-validation-for="Input.Category" class="text-danger"></span></p>
+                <p class="mb-0"><span asp-validation-for="Input.Price" class="text-danger"></span></p>
+                <div class="row p-0 m-0">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <p>
+                      <partial name="_StatusMessage" model="Model.StatusMessage" />
+                    </p>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+
+  <script asp-add-nonce>
+    onDeleteCompleted = () => {
+      console.log('Product was deleted');
+    };
+  </script>
+
+  <script type="text/javascript" asp-add-nonce>
+    $(function () {
+      $(".product-id").click(function () {
+        var productId = $(this).attr('data-product-id');
+        $.ajax({
+          type: "POST",
+          url: "/Products/remove/" + productId,
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader("XSRF-TOKEN", $('input:hidden[name="XsrfFormField"]').val());
+          },
+          data: {},
+          success: function (response) {
+            location.reload();
+          },
+          failure: function (response) {
+            console.log("Failure to delete product");
+          },
+          error: function (response) {
+            console.log("Error to delete product");
+          }
+        });
+      });
+    });
+  </script>
+}
