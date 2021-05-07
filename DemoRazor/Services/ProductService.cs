@@ -67,5 +67,14 @@ namespace DemoRazor.Services
             return await AppDb.SaveChangesAsync();
         }
 
+        public async Task<bool> IsBrandValidAsync(long brandId)
+        {
+            return await AppDb.ProductsBrands.AnyAsync(brand => brand.Id == brandId);
+        }
+
+        public async Task<bool> IsCategoryValidAsync(long categoryId)
+        {
+            return await AppDb.ProductsCategories.AnyAsync(cat => cat.Id == categoryId);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using DemoRazor.Attributes;
 using DemoRazor.Data;
 using DemoRazor.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -39,11 +40,13 @@ namespace DemoRazor.Pages
             [Display(Name = "Brand")]
             [Required(ErrorMessage = "The {0} field is required.")]
             [Range(0, 999, ErrorMessage = "The {0} field must be between {1} and {2} characters.")]
+            [ValidBrand]
             public long Brand { get; set; }
 
             [Display(Name = "Category")]
             [Required(ErrorMessage = "The {0} field is required.")]
             [Range(0, 999, ErrorMessage = "The {0} field must be between {1} and {2} characters.")]
+            [ValidCategory]
             public long Category { get; set; }
 
             [Display(Name = "Price")]
@@ -80,20 +83,6 @@ namespace DemoRazor.Pages
 
         public async Task<IActionResult> OnPostAddAsync()
         {
-            var brands = (await ProductSvc.GetBrands()).Any(brand => brand.Id == Input.Brand);
-
-            if (!brands)
-            {
-                ModelState.AddModelError("Input.Brand", "Invalid product brand.");
-            }
-
-            var category = (await ProductSvc.GetCategories()).Any(cat => cat.Id == Input.Category);
-
-            if (!category)
-            {
-                ModelState.AddModelError("Input.Brand", "Invalid product category.");
-            }
-
             if (!ModelState.IsValid)
             {
                 Products = await ProductSvc.GetProducts();
