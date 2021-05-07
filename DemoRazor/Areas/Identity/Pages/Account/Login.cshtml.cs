@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+using DemoRazor.Attributes;
+using DemoRazor.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using NetEscapades.AspNetCore.SecurityHeaders;
-using DemoRazor.Services;
 using Microsoft.Extensions.Localization;
-using DemoRazor.Attributes;
+using Microsoft.Extensions.Logging;
 
 namespace DemoRazor.Areas.Identity.Pages.Account
 {
