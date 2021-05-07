@@ -149,3 +149,11 @@ a.text-gradient.text-info:hover {
   height: 16px;
   width: 16px;
   margin-bottom: -2px; }
+
+.icon-sendgrid {
+  background-image: url(/img/logos/sendgrid.png);
+  background-size: cover;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  margin-bottom: -2px; }
