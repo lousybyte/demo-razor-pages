@@ -16,10 +16,8 @@ namespace DemoRazor.Pages
         }
 
 
-        public string Msg { get; set; }
         public void OnGet()
         {
-            Msg = Localizer["This is a localized message from page model."];
         }
     }
 }

@@ -2,7 +2,6 @@
 {
     public class CaptchaSettings
     {
-
         public Captcha Google { get; set; }
         public class Captcha
         {
