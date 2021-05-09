@@ -78,6 +78,14 @@ a {
     }
 }
 
+.modal-backdrop {
+    z-index: -1;
+
+    &.show {
+        opacity: 0;
+    }
+}
+
 .card.card-background {
     align-items:normal;
     .card-body {
