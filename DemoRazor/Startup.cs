@@ -40,6 +40,7 @@ namespace DemoRazor
             services.Configure<CookieSettings>(cookieSettings);
             services.Configure<EmailSettings>(Config.GetSection("Email"));
 
+            services.AddInMemoryRateLimiting();
             services.Configure<IpRateLimitOptions>(Config.GetSection("IpRateLimiting"));
             services.Configure<IpRateLimitPolicies>(Config.GetSection("IpRateLimitPolicies"));
             services.Configure<ClientRateLimitOptions>(Config.GetSection("ClientRateLimiting"));
