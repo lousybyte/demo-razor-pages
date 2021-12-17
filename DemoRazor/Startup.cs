@@ -144,7 +144,7 @@ namespace DemoRazor
             services.Configure<QuartzOptions>(Config.GetSection("Quartz"));
             services.AddQuartz(q =>
             {
-                q.UseMicrosoftDependencyInjectionScopedJobFactory();
+                q.UseMicrosoftDependencyInjectionJobFactory();
 
                 var jobKey = new JobKey("Email Quartz Job");
                 q.AddJob<EmailJob>(opts => opts.WithIdentity(jobKey));
