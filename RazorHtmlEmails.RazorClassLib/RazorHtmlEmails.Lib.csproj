@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <Nullable>disable</Nullable>
+    <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

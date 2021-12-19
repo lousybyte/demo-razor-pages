@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <Nullable>disable</Nullable>
+    <Nullable>annotations</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
