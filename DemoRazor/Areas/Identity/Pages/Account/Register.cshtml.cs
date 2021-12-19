@@ -21,9 +21,9 @@ namespace DemoRazor.Areas.Identity.Pages.Account
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly ILogger<RegisterModel> _logger;
-        private readonly EmailQueueService _emailQueueSvc;
+        private readonly UserManager<IdentityUser>   _userManager;
+        private readonly ILogger<RegisterModel>      _logger;
+        private readonly EmailQueueService           _emailQueueSvc;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -31,10 +31,10 @@ namespace DemoRazor.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             EmailQueueService emailQueueSvc)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
-            _emailQueueSvc = emailQueueSvc;
+            _userManager     = userManager;
+            _signInManager   = signInManager;
+            _logger          = logger;
+            _emailQueueSvc   = emailQueueSvc;
         }
 
         [BindProperty]

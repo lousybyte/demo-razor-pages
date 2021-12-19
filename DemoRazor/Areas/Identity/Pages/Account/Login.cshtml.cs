@@ -20,23 +20,23 @@ namespace DemoRazor.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly IStringLocalizer<SharedResources> _localizer;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILogger<LoginModel> _logger;
-        private readonly CaptchaVerificationService _captchaSvc;
+        private readonly UserManager<IdentityUser>         _userManager;
+        private readonly SignInManager<IdentityUser>       _signInManager;
+        private readonly ILogger<LoginModel>               _logger;
+        private readonly CaptchaVerificationService        _captchaSvc;
 
         public LoginModel(
             IStringLocalizer<SharedResources> localizer,
-            SignInManager<IdentityUser> signInManager,
-            ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager,
-            CaptchaVerificationService captchaSvc)
+            SignInManager<IdentityUser>       signInManager,
+            ILogger<LoginModel>               logger,
+            UserManager<IdentityUser>         userManager,
+            CaptchaVerificationService        captchaSvc)
         {
-            _localizer = localizer;
-            _userManager = userManager;
+            _localizer     = localizer;
+            _userManager   = userManager;
             _signInManager = signInManager;
-            _logger = logger;
-            _captchaSvc = captchaSvc;
+            _logger        = logger;
+            _captchaSvc    = captchaSvc;
         }
 
         [BindProperty]
