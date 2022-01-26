@@ -4,6 +4,7 @@
         <TargetFramework>net6.0</TargetFramework>
         <UserSecretsId>183ecd17-1f8d-4414-b368-9d23ba02b0ca</UserSecretsId>
         <Nullable>disable</Nullable>
+        <StartupObject>DemoRazor.Program</StartupObject>
     </PropertyGroup>
 
     <ItemGroup>
