@@ -16,7 +16,7 @@ namespace DemoRazor.Attributes
             if (!captcha)
             {
                 var localizer = validationContext.GetService<IStringLocalizer<SharedResources>>();
-                return new ValidationResult (localizer["Captcha verification failed."]);
+                return new ValidationResult(localizer["Captcha verification failed."]);
             }
 
             return ValidationResult.Success;

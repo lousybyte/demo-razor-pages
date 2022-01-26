@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using DemoRazor.Contexts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -21,19 +23,19 @@ namespace DemoRazor.Services
             AppDb        = appDbContext;
         }
 
+        private static readonly HttpClient httpClient = new ();
+
         public string GetHostAddress() => HttpAccessor.HttpContext?.Request.Scheme + "://" + HttpAccessor.HttpContext?.Request.Host.Host;
         public string GetIp() => HttpAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString();
-        private static bool IsUrlOnline(string url)
+        private static async Task<bool> IsUrlOnline(string url)
         {
             try
             {
-                var request     = WebRequest.Create(url);
-                request.Proxy   = null;
-                request.Method  = "HEAD";
-                request.Timeout = 3000;
+                httpClient.Timeout = TimeSpan.FromSeconds(10);
+                var request = new HttpRequestMessage(HttpMethod.Head, url);
 
-                var response = request.GetResponse();
-                response.Close();
+                HttpResponseMessage response = await httpClient.SendAsync(request);
+                response.EnsureSuccessStatusCode();
 
                 return true;
             }

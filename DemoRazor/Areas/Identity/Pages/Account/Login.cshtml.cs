@@ -2,8 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+
 using DemoRazor.Attributes;
 using DemoRazor.Services;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,10 +20,10 @@ namespace DemoRazor.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly IStringLocalizer<SharedResources> _localizer;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ILogger<LoginModel> _logger;
-        private readonly CaptchaVerificationService _captchaSvc;
+        private readonly UserManager<IdentityUser>         _userManager;
+        private readonly SignInManager<IdentityUser>       _signInManager;
+        private readonly ILogger<LoginModel>               _logger;
+        private readonly CaptchaVerificationService        _captchaSvc;
 
         public LoginModel(
             IStringLocalizer<SharedResources> localizer,
@@ -68,7 +70,7 @@ namespace DemoRazor.Areas.Identity.Pages.Account
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string? returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {

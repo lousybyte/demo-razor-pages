@@ -3,8 +3,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using DemoRazor.Attributes;
 using DemoRazor.Services;
+
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,9 +21,9 @@ namespace DemoRazor.Areas.Identity.Pages.Account
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly ILogger<RegisterModel> _logger;
-        private readonly EmailQueueService _emailQueueSvc;
+        private readonly UserManager<IdentityUser>   _userManager;
+        private readonly ILogger<RegisterModel>      _logger;
+        private readonly EmailQueueService           _emailQueueSvc;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -29,10 +31,10 @@ namespace DemoRazor.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             EmailQueueService emailQueueSvc)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _logger = logger;
-            _emailQueueSvc = emailQueueSvc;
+            _userManager     = userManager;
+            _signInManager   = signInManager;
+            _logger          = logger;
+            _emailQueueSvc   = emailQueueSvc;
         }
 
         [BindProperty]
@@ -66,7 +68,7 @@ namespace DemoRazor.Areas.Identity.Pages.Account
         [CaptchaValidation]
         public string CaptchaResponse { get; set; }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task OnGetAsync(string? returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();

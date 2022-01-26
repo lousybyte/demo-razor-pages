@@ -1,9 +1,9 @@
 # Demo Razor Pages
 
-ASP.NET Core 5 Razor Pages Demo Project
+ASP.NET Core 6 Razor Pages Demo Project
 
 
-### ASP.NET Core 5  
+### ASP.NET Core 6  
 
 * Globalization and Localization  
 * Custom Logging Provider (Serilog)  
@@ -19,7 +19,7 @@ ASP.NET Core 5 Razor Pages Demo Project
 
 ### Database
 
-* Entity Framework Core 5  
+* Entity Framework Core 6  
 * Azure PostgreSQL  
 * Code First Migrations  
 * Concurrency Tokens  
