@@ -20,8 +20,6 @@ namespace DemoRazor.Contexts
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.HasAnnotation("Relational:Collation", "English_United States.1252");
-
             modelBuilder.Entity<EmailQueueData>(entity =>
             {
                 entity.ToTable("email_queue");
