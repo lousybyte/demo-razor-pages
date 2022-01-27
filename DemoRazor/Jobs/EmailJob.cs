@@ -69,7 +69,8 @@ namespace DemoRazor.Jobs
                     Logger.LogError("Could not send email | {@entry} | {@response}", entry, response);
                 }
 
-                entry.UpdatedOn = DateTime.Now; // PostgreSQL does not have a simple way to update timestamp field on UPDATE, requires triggers
+                entry.UpdatedOn = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc); // PostgreSQL does not have a simple way to update timestamp field on UPDATE, requires triggers
+
                 await AppDb.SaveChangesAsync();
             }
         }

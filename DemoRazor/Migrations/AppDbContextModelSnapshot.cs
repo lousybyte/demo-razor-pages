@@ -60,7 +60,7 @@ namespace DemoRazor.Migrations
 
                     b.Property<DateTime>("RequestedOn")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("requested_on")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
@@ -78,7 +78,7 @@ namespace DemoRazor.Migrations
 
                     b.Property<DateTime>("UpdatedOn")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("timestamp without time zone")
+                        .HasColumnType("timestamp with time zone")
                         .HasColumnName("updated_on")
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 

@@ -60,8 +60,8 @@ namespace DemoRazor.Migrations
                     subject = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false, defaultValueSql: "'NO SUBJECT'::character varying"),
                     contentHtml = table.Column<string>(type: "character varying(100000)", maxLength: 100000, nullable: false, defaultValueSql: "'NO CONTENT'::character varying"),
                     status = table.Column<byte>(type: "smallint", nullable: false),
-                    requested_on = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
-                    updated_on = table.Column<DateTime>(type: "timestamp without time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    requested_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    updated_on = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     xmin = table.Column<uint>(type: "xid", rowVersion: true, nullable: false)
                 },
                 constraints: table =>
