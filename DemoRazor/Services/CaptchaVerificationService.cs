@@ -40,9 +40,9 @@ namespace DemoRazor.Services
 
                 var response = await client.PostAsync($"{googleVerificationUrl}?secret={Environment.GetEnvironmentVariable("CAPTCHA_SERVER_KEY")}&response={token}", null);
                 var jsonString = await response.Content.ReadAsStringAsync();
-                var captchaVerfication = JsonSerializer.Deserialize<CaptchaVerificationResponse>(jsonString);
+                var captchaVerification = JsonSerializer.Deserialize<CaptchaVerificationResponse>(jsonString);
 
-                result = captchaVerfication.Success;
+                result = captchaVerification.Success;
             }
             catch (Exception e)
             {
@@ -54,11 +54,13 @@ namespace DemoRazor.Services
 
         public class CaptchaVerificationResponse
         {
+            [JsonPropertyName("success")]
             public bool     Success { get; set; }
 
             [JsonPropertyName("challenge_ts")]
             public DateTime ChallengeTimestamp { get; set; }
 
+            [JsonPropertyName("hostname")]
             public string   Hostname { get; set; }
 
             [JsonPropertyName("error-codes")]
