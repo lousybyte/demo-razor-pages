@@ -68,7 +68,7 @@ namespace DemoRazor.Areas.Identity.Pages.Account
         [CaptchaValidation]
         public string CaptchaResponse { get; set; }
 
-        public async Task OnGetAsync(string? returnUrl = null)
+        public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
