@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Net.Http;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using DemoRazor.Contexts;
 using DemoRazor.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace DemoRazor.Services
 {
@@ -39,7 +40,7 @@ namespace DemoRazor.Services
 
                 var response = await client.PostAsync($"{googleVerificationUrl}?secret={Environment.GetEnvironmentVariable("CAPTCHA_SERVER_KEY")}&response={token}", null);
                 var jsonString = await response.Content.ReadAsStringAsync();
-                var captchaVerfication = JsonConvert.DeserializeObject<CaptchaVerificationResponse>(jsonString);
+                var captchaVerfication = JsonSerializer.Deserialize<CaptchaVerificationResponse>(jsonString);
 
                 result = captchaVerfication.Success;
             }
@@ -55,12 +56,12 @@ namespace DemoRazor.Services
         {
             public bool     Success { get; set; }
 
-            [JsonProperty("challenge_ts")]
+            [JsonPropertyName("challenge_ts")]
             public DateTime ChallengeTimestamp { get; set; }
 
             public string   Hostname { get; set; }
 
-            [JsonProperty("error-codes")]
+            [JsonPropertyName("error-codes")]
             public string[] Errorcodes { get; set; }
         }
     }
