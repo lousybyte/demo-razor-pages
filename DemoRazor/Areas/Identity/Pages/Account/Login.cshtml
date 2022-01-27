@@ -85,13 +85,16 @@
               <p class="mb-4 text-sm mx-auto">
               <p class="mb-0">
                 <a id="forgot-password" class="text-info text-gradient" asp-page="./ForgotPassword">@Localizer["Forgot your password?"]</a>
-</p>
+              </p>
               <p class="mb-0">
                 <a class="text-info text-gradient" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">@Localizer["Register as a new user"]</a>
-</p>
+              </p>
               <p class="mb-0">
                 <a id="resend-confirmation" class="text-info text-gradient" asp-page="./ResendEmailConfirmation">@Localizer["Resend email confirmation"]</a>
-</p>
+              </p>
+              <p class="text-secondary small mt-3">
+                  The registration system is fully functional, but you can use <span class="fw-bold">test@demo.com</span> / <span class="fw-bold">Test`123</span> for a quick login.
+              </p>
             </div>
           </div>
         </div>
