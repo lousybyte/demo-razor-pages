@@ -1,42 +1,36 @@
 ﻿using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
+
 using DemoRazor.Contexts;
-using DemoRazor.Extensions;
-using DemoRazor.Models;
+
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+
 using Quartz;
-using SendGrid;
-using SendGrid.Helpers.Mail;
+
 using static DemoRazor.Helpers.Accessor;
 
 namespace DemoRazor.Jobs
 {
     public class EmailJob : IJob
     {
-        private readonly ILogger<EmailJob> Logger;
-        private readonly EmailSettings     Config;
-        private readonly AppDbContext      AppDb;
+        private readonly IEmailProcessor EmailSender;
+        private readonly AppDbContext AppDb;
 
         public EmailJob(
-            ILogger<EmailJob>               logger,
-            IOptionsSnapshot<EmailSettings> config,
-            AppDbContext                    appDb)
+            IEmailProcessor emailSender,
+            AppDbContext appDb)
         {
-            Logger = logger;
-            Config = config.Value;
-            AppDb  = appDb;
+            EmailSender = emailSender;
+            AppDb       = appDb;
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
-            await SendEmailAsync();
+            await ProcessEmailsAsync();
         }
 
-        public async Task SendEmailAsync()
+        public async Task ProcessEmailsAsync()
         {
             var emails = await AppDb.EmailQueue
                     .Where(data => data.Status == EmailStatus.Pending)
@@ -46,29 +40,7 @@ namespace DemoRazor.Jobs
 
             foreach (var entry in emails)
             {
-                var apiKey = Environment.GetEnvironmentVariable("EMAIL_SENDGRID_API_KEY");
-                var client = new SendGridClient(apiKey);
-
-                var from = new EmailAddress(
-                    Config.FromAddress.NullIfEmpty() ?? Environment.GetEnvironmentVariable("EMAIL_SENDGRID_FROM_ADDRESS"),
-                    Config.FromName.NullIfEmpty() ?? Environment.GetEnvironmentVariable("EMAIL_SENDGRID_FROM_NAME")
-                );
-                var to = new EmailAddress(Config.ToAddress.NullIfEmpty() ?? entry.Email, Config.ToName.NullIfEmpty() ?? entry.Email);
-
-                var msg = MailHelper.CreateSingleEmail(from, to, entry.Subject, "", entry.ContentHtml);
-                var response = await client.SendEmailAsync(msg);
-
-                if (response.StatusCode == HttpStatusCode.Accepted)
-                {
-                    entry.Status = EmailStatus.Sent;
-                    Logger.LogInformation("Email successfully sent | {@entry} | {@response}", entry, response);
-                }
-                else
-                {
-                    entry.Status = EmailStatus.Error;
-                    Logger.LogError("Could not send email | {@entry} | {@response}", entry, response);
-                }
-
+                entry.Status = await EmailSender.SendEmailAsync(entry);
                 entry.UpdatedOn = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc); // PostgreSQL does not have a simple way to update timestamp field on UPDATE, requires triggers
 
                 await AppDb.SaveChangesAsync();

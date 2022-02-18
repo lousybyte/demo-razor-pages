@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Globalization;
+
 using AspNetCoreRateLimit;
+
 using DemoRazor.Contexts;
 using DemoRazor.Jobs;
 using DemoRazor.Models;
 using DemoRazor.Services;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +20,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+
 using Quartz;
+
 using RazorHtmlEmails.RazorClassLib.Services;
 
 namespace DemoRazor
@@ -126,6 +131,7 @@ namespace DemoRazor
 
             services.AddScoped<AccessorService>();
             services.AddScoped<EmailQueueService>();
+            services.AddScoped<IEmailProcessor, EmailSengrid>();
             services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
             services.AddScoped<ProductService>();
 
